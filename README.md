@@ -468,8 +468,8 @@ nohup \
     -XX:NativeMemoryTracking=detail \
     -Dderby.stream.error.file=log/derby.log \
     -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false \
-    -Djava.rmi.server.hostname={{ prod }} -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 \
-    -jar target/dbo-1.0-SNAPSHOT.jar \
+    -Djava.rmi.server.hostname=s-msk-t-jvm-05 -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 \
+    -jar dbo-1.0-SNAPSHOT.jar \
       --spring.profiles.active=qa \
       --server.port=8080 \
 > /dev/null 2>&1 &
@@ -500,27 +500,28 @@ jmeter -n -t load.jmx -j log/jmeter/jmeter.log -l log/jmeter/jmeter.jtl -e -o lo
 ### When
 - [ ] CLI tools used at {{ prod }}
 ```shell script
-uname --all
+uname --all - система, какое ядро
 cat /etc/os-release
 uptime
 
-df -ah
-free -m
+df -ah - свободное место
+free -m - память
 
-ps -ef
-ps -eaux --forest
-ps -eT | grep <pid>
+ps -ef - процессы
+ps -eaux --forest - процессы с древовидной структурой
+ps -eT | grep <pid> - треды в привязке к процессам
 
-top + 'q'
+top + 'q' - список процессов и потребление ресурсов (q - выход)
 top + 'f'
 top -p <pid>
 top -H -p <pid>
 
-vmstat 1 [-w] # mpstat 1
-iostat 1 [-xm]
+vmstat 1 [-w] # mpstat 1 - статистика VM
+iostat 1 [-xm] - статистика ввода вывода
 pidstat 1
-netstat 1 [-tulnp]
+netstat 1 [-tulnp] - сетевая статистика
 
+  #Команды ниже поставляются с jdk 
 jps [-lvm]
 jcmd <pid> help
 jcmd <pid> VM.uptime
