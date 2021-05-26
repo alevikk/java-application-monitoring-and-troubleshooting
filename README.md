@@ -528,7 +528,7 @@ jcmd <pid> VM.uptime
 jcmd <pid> VM.system_properties
 jcmd <pid> VM.flags
 
-java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -version
+java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -version # все флаги с дефолтными значениями для jvm
 jinfo <pid>
 jinfo -flag PrintGCDetails <pid> # get jvm flag value
 jinfo -flag +PrintGCDetails <pid> # change flag value, makes sense only for _manageable_ ones
