@@ -462,9 +462,9 @@ rm -rf dbo-db
 nohup \
   java \
     -Xms128m -Xmx128m \
-    -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=heapdump.hprof \
-    -XX:+TraceClassLoading -XX:+TraceClassUnloading \
-    -Xloggc:gc.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=8 -XX:GCLogFileSize=8m \
+    -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=heapdump.hprof \  #HeapDumpOnOutOfMemoryError в случае когда приклад падает с ошибкой нехватки хипа, то будет сделан хип дамп в папку указанную в HeapDumpPath
+    -XX:+TraceClassLoading -XX:+TraceClassUnloading \ # отслеживание загрузки и выгрузки классов
+    -Xloggc:gc.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=8 -XX:GCLogFileSize=8m \ #
     -XX:NativeMemoryTracking=detail \
     -Dderby.stream.error.file=log/derby.log \
     -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false \
